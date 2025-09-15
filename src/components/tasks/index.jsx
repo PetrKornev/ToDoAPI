@@ -35,23 +35,33 @@ const Tasks = ({ handleCompleted, handleDelete, setDataList, item, token }) => {
   };
 
   return (
-    <li
-      key={item.id}
-      style={{ textDecoration: item.isCompleted ? 'line-through' : 'none' }}
-    >
-      <input
-        type="checkbox"
-        onChange={() => handleCompleted(item.id)}
-        checked={item.isCompleted}
-      />
-      {showInput ? (
-        <input value={editTask} onChange={edit} onKeyDown={keyDownOnEdit} />
-      ) : (
-        item.title
-      )}
+    <li className="todo-item">
+      <label className={`task-label ${item.isCompleted ? 'completed' : ''}`}>
+        <input
+          type="checkbox"
+          onChange={() => handleCompleted(item.id)}
+          checked={item.isCompleted}
+        />
+        {showInput ? (
+          <input
+            className="task-edit-input"
+            value={editTask}
+            onChange={edit}
+            onKeyDown={keyDownOnEdit}
+          />
+        ) : (
+          <span>{item.title}</span>
+        )}
+      </label>
 
-      <button onClick={() => setShowInput(!showInput)}>Изменить</button>
-      <button onClick={() => handleDelete(item.id)}>Удалить</button>
+      <div className="task-actions">
+        <button className="edit-btn" onClick={() => setShowInput(!showInput)}>
+          Изменить
+        </button>
+        <button className="delete-btn" onClick={() => handleDelete(item.id)}>
+          Удалить
+        </button>
+      </div>
     </li>
   );
 };

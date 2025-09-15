@@ -12,11 +12,17 @@ const FilterButton = ({ setStatus }) => {
   };
 
   return (
-    <>
-      <button onClick={allTask}>Все</button>
-      <button onClick={activeTask}>Активные</button>
-      <button onClick={completedTask}>Готовые</button>
-    </>
+    <div className="filter-container">
+      <button className="filter-btn" onClick={allTask}>
+        Все
+      </button>
+      <button className="filter-btn" onClick={activeTask}>
+        Активные
+      </button>
+      <button className="filter-btn" onClick={completedTask}>
+        Готовые
+      </button>
+    </div>
   );
 };
 

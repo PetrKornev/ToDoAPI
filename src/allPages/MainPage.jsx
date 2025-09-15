@@ -60,7 +60,7 @@ function MainPage() {
   }, [token]);
 
   return (
-    <>
+    <div className="todo-container">
       <Header />
       <Input setDataList={setDataList} token={token} />
       <List
@@ -75,7 +75,7 @@ function MainPage() {
         setDataList={setDataList}
         token={token}
       />
-    </>
+    </div>
   );
 }
 

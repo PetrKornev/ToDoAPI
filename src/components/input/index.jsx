@@ -40,8 +40,9 @@ const Input = ({ token, setDataList }) => {
   };
 
   return (
-    <>
+    <div className="input-container">
       <input
+        className="todo-input"
         name="task"
         placeholder="Введите задачу"
         type="text"
@@ -49,9 +50,11 @@ const Input = ({ token, setDataList }) => {
         onKeyDown={handleKey}
         value={input}
       />
-      <button onClick={handleClick}>Добавить</button>
-      <p>Нельзя добавить пустую задачу</p>
-    </>
+      <button className="todo-button" onClick={handleClick}>
+        Добавить
+      </button>
+      <p className="error-text">Нельзя добавить пустую задачу</p>
+    </div>
   );
 };
 

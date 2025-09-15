@@ -23,9 +23,9 @@ const CounterAndTrashButton = ({ dataList, setDataList, token }) => {
   };
 
   return (
-    <div>
-      Осталось дел:{filterActive.length}{' '}
-      <button onClick={() => deleteAllCompletedTasks()}>
+    <div className="counter-trash-container">
+      <span>Осталось дел:{filterActive.length}</span>
+      <button className="filter-btn" onClick={() => deleteAllCompletedTasks()}>
         Очистить выполненные
       </button>
     </div>

@@ -46,7 +46,7 @@ const List = ({ dataList, token, setDataList, status }) => {
   });
 
   return token ? (
-    <ul>
+    <ul className="todo-list">
       {filterTask.map((item) => (
         <Tasks
           key={item.id}
@@ -59,7 +59,7 @@ const List = ({ dataList, token, setDataList, status }) => {
       ))}
     </ul>
   ) : (
-    <div>Загрузка</div>
+    <div className="loading">Загрузка</div>
   );
 };
 
