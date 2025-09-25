@@ -63,7 +63,7 @@ const Login = () => {
         <button type="submit" className="login-button">
           Войти
         </button>
-        <a>Не зарегестрированы?</a>
+        <a>Не зарегистрированы?</a>
       </form>
     </div>
   );

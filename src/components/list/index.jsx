@@ -1,4 +1,4 @@
-import Tasks from '../tasks';
+import Tasks from '../Tasks';
 
 const List = ({ dataList, token, setDataList, status }) => {
   const handleDelete = async (id) => {

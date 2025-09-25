@@ -78,8 +78,8 @@ function MainPage() {
     //     token={token}
     //   />
     // </div>
-    // <Login />
-    <Registration />
+    <Login />
+    // <Registration />
   );
 }
 
