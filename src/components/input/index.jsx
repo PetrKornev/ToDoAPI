@@ -24,11 +24,11 @@ const Input = ({ token, setDataList }) => {
           headers: {
             accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify({
-            title: `${input}`,
-          }),
+            title: `${input}`
+          })
         }
       );
       const data = await response.json();

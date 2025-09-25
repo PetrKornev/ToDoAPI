@@ -22,9 +22,9 @@ const Tasks = ({ handleCompleted, handleDelete, setDataList, item, token }) => {
         headers: {
           accept: 'application/json',
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ title: editTask }),
+        body: JSON.stringify({ title: editTask })
       }
     );
     const data = await response.json();

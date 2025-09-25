@@ -166,3 +166,129 @@ body {
   background: #fff;
   gap: 20px;
 }
+
+.login-container {
+  border: 2px solid black;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.login-header {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-input {
+  border: 2px solid black;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.login-input:focus {
+  border-color: #333;
+}
+
+.login-button {
+  border: 2px solid black;
+  background: #fff;
+  color: black;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.login-button:hover {
+  background: #f5f5f5;
+}
+
+/* Контейнер */
+.registration-container {
+  border: 2px solid black;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+}
+
+/* Заголовок */
+.registration-header {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+}
+
+/* Форма */
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Инпуты */
+.registration-input {
+  border: 2px solid black;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+}
+
+.registration-input:focus {
+  border-color: #333;
+}
+
+/* Ошибки */
+.error-text {
+  color: red;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Радио-группа */
+.gender-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.registration-button {
+  border: none;
+  background: #28a745; /* зелёный */
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.registration-button:hover {
+  background: #218838; /* более тёмный зелёный при наведении */
+  transform: translateY(-2px);
+}
+
+.registration-button:active {
+  background: #1e7e34; /* ещё темнее при клике */
+  transform: translateY(0);
+}

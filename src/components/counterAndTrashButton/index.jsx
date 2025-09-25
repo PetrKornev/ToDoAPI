@@ -12,8 +12,8 @@ const CounterAndTrashButton = ({ dataList, setDataList, token }) => {
             method: 'DELETE',
             headers: {
               accept: 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
+              Authorization: `Bearer ${token}`
+            }
           })
         )
       )

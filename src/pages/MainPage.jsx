@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/header';
-import List from '../components/List';
-import Input from '../components/Input';
+import List from '../components/list';
+import Input from '../components/input';
 import CounterAndTrashButton from '../components/counterAndTrashButton';
 import FilterButton from '../components/filterButton';
+import Login from '../components/Login';
+import Registration from '../components/Registration';
 import './App.css';
 
 function MainPage() {
@@ -17,12 +19,12 @@ function MainPage() {
         method: 'POST',
         headers: {
           accept: 'application/json',
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           email: 'kornevpetya@mail.ru',
-          password: '123_Qwerty',
-        }),
+          password: '123_Qwerty'
+        })
       }
     );
     const data = await response.json();
@@ -40,8 +42,8 @@ function MainPage() {
             method: 'GET',
             headers: {
               accept: 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
+              Authorization: `Bearer ${token}`
+            }
           }
         );
         const data = await response.json();
@@ -60,22 +62,24 @@ function MainPage() {
   }, [token]);
 
   return (
-    <div className="todo-container">
-      <Header />
-      <Input setDataList={setDataList} token={token} />
-      <List
-        dataList={dataList}
-        token={token}
-        setDataList={setDataList}
-        status={status}
-      />
-      <FilterButton setStatus={setStatus} />
-      <CounterAndTrashButton
-        dataList={dataList}
-        setDataList={setDataList}
-        token={token}
-      />
-    </div>
+    // <div className="todo-container">
+    //   <Header />
+    //   <Input setDataList={setDataList} token={token} />
+    //   <List
+    //     dataList={dataList}
+    //     token={token}
+    //     setDataList={setDataList}
+    //     status={status}
+    //   />
+    //   <FilterButton setStatus={setStatus} />
+    //   <CounterAndTrashButton
+    //     dataList={dataList}
+    //     setDataList={setDataList}
+    //     token={token}
+    //   />
+    // </div>
+    // <Login />
+    <Registration />
   );
 }
 

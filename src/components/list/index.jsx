@@ -9,8 +9,8 @@ const List = ({ dataList, token, setDataList, status }) => {
           method: 'DELETE',
           headers: {
             accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
+            Authorization: `Bearer ${token}`
+          }
         }
       );
       const data = await response.json();
@@ -27,8 +27,8 @@ const List = ({ dataList, token, setDataList, status }) => {
         method: 'PATCH',
         headers: {
           accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       }
     );
     const data = await response.json();
