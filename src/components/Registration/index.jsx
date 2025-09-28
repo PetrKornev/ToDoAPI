@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const Registration = () => {
   const {
@@ -11,6 +11,7 @@ const Registration = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const navigate = useNavigate();
 
   const emailError = errors.email?.message;
   const passwordError = errors.password?.message;
@@ -47,9 +48,9 @@ const Registration = () => {
     }
   };
 
-  // const onClickForLogin = () => {
-  //   return <Navigate to={'/'} replace />;
-  // };
+  const onClickForLogin = () => {
+    navigate('/');
+  };
   return (
     <div className="registration-container">
       <h2 className="registration-header">Регистрация пользователя</h2>
@@ -121,10 +122,10 @@ const Registration = () => {
         <button type="submit" className="registration-button">
           Зарегистрироваться
         </button>
-        {/* <button className="registration-button" onClick={onClickForLogin}>
-          Авторизироваться
-        </button> */}
       </form>
+      <button className="login-redirect-button" onClick={onClickForLogin}>
+        Авторизироваться
+      </button>
 
       {isModalOpen && (
         <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>

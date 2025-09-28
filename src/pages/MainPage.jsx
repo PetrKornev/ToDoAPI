@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { Routes, Route } from 'react-router';
+import { AuthContext } from '../utils/AuthContext';
 import Header from '../components/header';
 import List from '../components/list';
 import Input from '../components/input';
@@ -9,7 +10,6 @@ import Login from '../components/Login';
 import Registration from '../components/Registration';
 import PrivateRoute from '../utils/PrivateRoute';
 import Logout from '../components/Logout';
-import { AuthContext } from '../utils/AuthContext';
 import './App.css';
 
 function MainPage() {
@@ -43,7 +43,7 @@ function MainPage() {
 
   useEffect(() => {
     sendGetRequest();
-  }, []);
+  }, [token]);
 
   return (
     <Routes>
@@ -55,10 +55,9 @@ function MainPage() {
           element={
             <div className="todo-container">
               <Header />
-              <Input setDataList={setDataList} token={token} />
+              <Input setDataList={setDataList} />
               <List
                 dataList={dataList}
-                token={token}
                 setDataList={setDataList}
                 status={status}
               />

@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../../utils/AuthContext';
 
-const Input = ({ token, setDataList }) => {
+const Input = ({ setDataList }) => {
   const [input, setInput] = useState('');
+  const { token } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setInput(e.target.value);

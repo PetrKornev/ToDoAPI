@@ -1,4 +1,8 @@
-const CounterAndTrashButton = ({ dataList, setDataList, token }) => {
+import { useContext } from 'react';
+import { AuthContext } from '../../utils/AuthContext';
+
+const CounterAndTrashButton = ({ dataList, setDataList }) => {
+  const { token } = useContext(AuthContext);
   const filterActive = dataList.filter((item) => !item.isCompleted);
 
   const deleteAllCompletedTasks = async () => {

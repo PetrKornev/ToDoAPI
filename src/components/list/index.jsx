@@ -1,6 +1,9 @@
+import { useContext } from 'react';
+import { AuthContext } from '../../utils/AuthContext';
 import Tasks from '../Tasks';
 
-const List = ({ dataList, token, setDataList, status }) => {
+const List = ({ dataList, setDataList, status }) => {
+  const { token } = useContext(AuthContext);
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
