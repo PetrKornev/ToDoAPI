@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { Navigate } from 'react-router';
 
 const Registration = () => {
   const {
@@ -33,7 +34,6 @@ const Registration = () => {
         }
       );
       const dataFromAPI = await response.json();
-      console.log(dataFromAPI);
 
       if (dataFromAPI.id) {
         setModalMessage(`Успешная регистрация: ${dataFromAPI.username}`);
@@ -46,6 +46,10 @@ const Registration = () => {
       setIsModalOpen(true);
     }
   };
+
+  // const onClickForLogin = () => {
+  //   return <Navigate to={'/'} replace />;
+  // };
   return (
     <div className="registration-container">
       <h2 className="registration-header">Регистрация пользователя</h2>
@@ -117,6 +121,9 @@ const Registration = () => {
         <button type="submit" className="registration-button">
           Зарегистрироваться
         </button>
+        {/* <button className="registration-button" onClick={onClickForLogin}>
+          Авторизироваться
+        </button> */}
       </form>
 
       {isModalOpen && (

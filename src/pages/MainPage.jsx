@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { Routes, Route } from 'react-router';
 import Header from '../components/header';
 import List from '../components/list';
 import Input from '../components/input';
@@ -6,30 +7,16 @@ import CounterAndTrashButton from '../components/counterAndTrashButton';
 import FilterButton from '../components/filterButton';
 import Login from '../components/Login';
 import Registration from '../components/Registration';
+import PrivateRoute from '../utils/PrivateRoute';
+import Logout from '../components/Logout';
+import { AuthContext } from '../utils/AuthContext';
 import './App.css';
 
 function MainPage() {
-  const [token, setToken] = useState('');
   const [dataList, setDataList] = useState([]);
   const [status, setStatus] = useState('all');
-  const getToken = async () => {
-    const response = await fetch(
-      'https://todo-redev.herokuapp.com/api/auth/login',
-      {
-        method: 'POST',
-        headers: {
-          accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: 'kornevpetya@mail.ru',
-          password: '123_Qwerty'
-        })
-      }
-    );
-    const data = await response.json();
-    setToken(data.token);
-  };
+
+  const { token } = useContext(AuthContext);
 
   const sendGetRequest = async () => {
     if (!token) {
@@ -53,33 +40,40 @@ function MainPage() {
       }
     }
   };
-  useEffect(() => {
-    getToken();
-  }, []);
 
   useEffect(() => {
     sendGetRequest();
-  }, [token]);
+  }, []);
 
   return (
-    // <div className="todo-container">
-    //   <Header />
-    //   <Input setDataList={setDataList} token={token} />
-    //   <List
-    //     dataList={dataList}
-    //     token={token}
-    //     setDataList={setDataList}
-    //     status={status}
-    //   />
-    //   <FilterButton setStatus={setStatus} />
-    //   <CounterAndTrashButton
-    //     dataList={dataList}
-    //     setDataList={setDataList}
-    //     token={token}
-    //   />
-    // </div>
-    <Login />
-    // <Registration />
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/registration" element={<Registration />} />
+      <Route element={<PrivateRoute />}>
+        <Route
+          path="/toDoList"
+          element={
+            <div className="todo-container">
+              <Header />
+              <Input setDataList={setDataList} token={token} />
+              <List
+                dataList={dataList}
+                token={token}
+                setDataList={setDataList}
+                status={status}
+              />
+              <FilterButton setStatus={setStatus} />
+              <CounterAndTrashButton
+                dataList={dataList}
+                setDataList={setDataList}
+                token={token}
+              />
+              <Logout />
+            </div>
+          }
+        />
+      </Route>
+    </Routes>
   );
 }
 

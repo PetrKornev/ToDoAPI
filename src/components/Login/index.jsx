@@ -1,6 +1,12 @@
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router';
+import { useContext } from 'react';
+import { AuthContext } from '../../utils/AuthContext';
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -26,11 +32,15 @@ const Login = () => {
         }
       );
       const dataFromAPI = await response.json();
-      localStorage.setItem('token', dataFromAPI.token);
+      if (response.ok) {
+        login(dataFromAPI.token);
+        navigate('/toDoList');
+      }
     } catch (error) {
       console.log(error.message);
     }
   };
+
   return (
     <div className="login-container">
       <h2 className="login-header">Вход</h2>
@@ -63,7 +73,7 @@ const Login = () => {
         <button type="submit" className="login-button">
           Войти
         </button>
-        <a>Не зарегистрированы?</a>
+        <Link to="/registration">Не зарегистрированы?</Link>
       </form>
     </div>
   );
