@@ -40,7 +40,7 @@ function MainPage() {
 
   useEffect(() => {
     sendGetRequest();
-  }, [localStorage.getItem('token')]);
+  }, []);
 
   return (
     <Routes>

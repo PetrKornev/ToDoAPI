@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [errorOfLoginMessage, setErrorOfLoginMessage] = useState('');
+  const [errorOfLogin, setErrorOfLogin] = useState(false);
 
   const {
     register,
@@ -12,13 +15,16 @@ const Login = () => {
 
   const emailError = errors.email?.message;
   const passwordError = errors.password?.message;
+
   const errorMessage = (error) =>
     error ? <p className="error-text">{error}</p> : null;
 
   const onSubmit = async (data) => {
+    setErrorOfLogin(false);
+    setErrorOfLoginMessage('');
     try {
       const response = await fetch(
-        'https://todo-redev.herokuapp.com/api/auth/login',
+        `${import.meta.env.VITE_API_URL}/auth/login`,
         {
           method: 'post',
           headers: {
@@ -29,10 +35,25 @@ const Login = () => {
         }
       );
       const dataFromAPI = await response.json();
-      localStorage.setItem('token', dataFromAPI.token);
-      navigate('/toDoList');
+
+      if (response.ok) {
+        localStorage.setItem('token', dataFromAPI.token);
+        navigate('/toDoList');
+      } else {
+        setErrorOfLogin(true);
+        setErrorOfLoginMessage(dataFromAPI.message || 'Ошибка входа');
+        setTimeout(() => {
+          setErrorOfLogin(false);
+          setErrorOfLoginMessage('');
+        }, 5000);
+      }
     } catch (error) {
-      console.log(error.message);
+      setErrorOfLogin(true);
+      setErrorOfLoginMessage('Ошибка сети:' + error.message);
+      setTimeout(() => {
+        setErrorOfLogin(false);
+        setErrorOfLoginMessage('');
+      }, 5000);
     }
   };
 
@@ -58,13 +79,11 @@ const Login = () => {
           type="password"
           placeholder="Введите пароль"
           {...register('password', {
-            required: 'Поле обязательно к заполнению',
-            pattern: {
-              value: /^(?=.*[A-Z]).{6,}$/
-            }
+            required: 'Поле обязательно к заполнению'
           })}
         />
         {errorMessage(passwordError)}
+        {errorOfLogin && <p className="error-text">{errorOfLoginMessage}</p>}
         <button type="submit" className="login-button">
           Войти
         </button>

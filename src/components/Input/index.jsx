@@ -2,9 +2,11 @@ import { useState } from 'react';
 
 const Input = ({ setDataList }) => {
   const [input, setInput] = useState('');
+  const [errorEmptyInput, setErrorEmptyInput] = useState(false);
 
   const handleChange = (e) => {
     setInput(e.target.value);
+    if (errorEmptyInput) setErrorEmptyInput(false);
   };
 
   const handleKey = (e) => {
@@ -14,7 +16,10 @@ const Input = ({ setDataList }) => {
   };
 
   const handleClick = async () => {
-    if (!localStorage.getItem('token') || !input.trim()) return;
+    if (!input.trim()) {
+      setErrorEmptyInput(true);
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -34,6 +39,7 @@ const Input = ({ setDataList }) => {
       const data = await response.json();
       setDataList((prev) => [...prev, data]);
       setInput('');
+      setErrorEmptyInput(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -53,7 +59,9 @@ const Input = ({ setDataList }) => {
       <button className="todo-button" onClick={handleClick}>
         Добавить
       </button>
-      <p className="error-text">Нельзя добавить пустую задачу</p>
+      {errorEmptyInput && (
+        <p className="error-text">Нельзя добавить пустую задачу</p>
+      )}
     </div>
   );
 };

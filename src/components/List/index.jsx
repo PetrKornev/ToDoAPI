@@ -4,7 +4,7 @@ const List = ({ dataList, setDataList, status }) => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `https://todo-redev.herokuapp.com/api/todos/${id}`,
+        `${import.meta.env.VITE_API_URL}/todos/${id}`,
         {
           method: 'DELETE',
           headers: {
@@ -22,7 +22,7 @@ const List = ({ dataList, setDataList, status }) => {
 
   const handleCompleted = async (id) => {
     const response = await fetch(
-      `https://todo-redev.herokuapp.com/api/todos/${id}/isCompleted`,
+      `${import.meta.env.VITE_API_URL}/todos/${id}/isCompleted`,
       {
         method: 'PATCH',
         headers: {

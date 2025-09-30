@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Tasks = ({ handleCompleted, handleDelete, setDataList, item, token }) => {
+const Tasks = ({ handleCompleted, handleDelete, setDataList, item }) => {
   const [editTask, setEditTask] = useState(item.title);
   const [showInput, setShowInput] = useState(false);
 
@@ -16,13 +16,13 @@ const Tasks = ({ handleCompleted, handleDelete, setDataList, item, token }) => {
 
   const handleChangeTask = async (id) => {
     const response = await fetch(
-      `https://todo-redev.herokuapp.com/api/todos/${id}`,
+      `${import.meta.env.VITE_API_URL}/todos/${id}`,
       {
         method: 'PATCH',
         headers: {
           accept: 'application/json',
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify({ title: editTask })
       }

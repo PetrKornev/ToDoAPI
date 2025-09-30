@@ -7,7 +7,7 @@ const CounterAndTrashButton = ({ dataList, setDataList }) => {
       .map((item) => item.id);
     await Promise.all(
       filterId.map((id) =>
-        fetch(`https://todo-redev.herokuapp.com/api/todos/${id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
           method: 'DELETE',
           headers: {
             accept: 'application/json',

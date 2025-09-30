@@ -24,7 +24,7 @@ const Registration = () => {
   const onSubmit = async (data) => {
     try {
       const response = await fetch(
-        'https://todo-redev.herokuapp.com/api/users/register',
+        `${import.meta.env.VITE_API_URL}/users/register`,
         {
           method: 'POST',
           headers: {
