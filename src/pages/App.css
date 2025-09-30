@@ -377,3 +377,13 @@ body {
   background: #e0e0e0;
   transform: translateY(0);
 }
+
+.no-tasks {
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 1rem;
+  border-top: 1px solid black;
+  background: #fff;
+  line-height: 1.4;
+  margin: 0;
+}

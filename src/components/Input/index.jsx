@@ -1,9 +1,7 @@
-import { useState, useContext } from 'react';
-import { AuthContext } from '../../utils/AuthContext';
+import { useState } from 'react';
 
 const Input = ({ setDataList }) => {
   const [input, setInput] = useState('');
-  const { token } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -16,7 +14,7 @@ const Input = ({ setDataList }) => {
   };
 
   const handleClick = async () => {
-    if (!token || !input.trim()) return;
+    if (!localStorage.getItem('token') || !input.trim()) return;
 
     try {
       const response = await fetch(
@@ -26,7 +24,7 @@ const Input = ({ setDataList }) => {
           headers: {
             accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
           },
           body: JSON.stringify({
             title: `${input}`

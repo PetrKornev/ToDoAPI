@@ -1,8 +1,4 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../utils/AuthContext';
-
 const CounterAndTrashButton = ({ dataList, setDataList }) => {
-  const { token } = useContext(AuthContext);
   const filterActive = dataList.filter((item) => !item.isCompleted);
 
   const deleteAllCompletedTasks = async () => {
@@ -11,15 +7,13 @@ const CounterAndTrashButton = ({ dataList, setDataList }) => {
       .map((item) => item.id);
     await Promise.all(
       filterId.map((id) =>
-        fetch(
-          fetch(`https://todo-redev.herokuapp.com/api/todos/${id}`, {
-            method: 'DELETE',
-            headers: {
-              accept: 'application/json',
-              Authorization: `Bearer ${token}`
-            }
-          })
-        )
+        fetch(`https://todo-redev.herokuapp.com/api/todos/${id}`, {
+          method: 'DELETE',
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
       )
     );
 

@@ -1,9 +1,6 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../utils/AuthContext';
 import Tasks from '../Tasks';
 
 const List = ({ dataList, setDataList, status }) => {
-  const { token } = useContext(AuthContext);
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
@@ -12,7 +9,7 @@ const List = ({ dataList, setDataList, status }) => {
           method: 'DELETE',
           headers: {
             accept: 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         }
       );
@@ -30,7 +27,7 @@ const List = ({ dataList, setDataList, status }) => {
         method: 'PATCH',
         headers: {
           accept: 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       }
     );
@@ -48,21 +45,22 @@ const List = ({ dataList, setDataList, status }) => {
     return true;
   });
 
-  return token ? (
+  return (
     <ul className="todo-list">
-      {filterTask.map((item) => (
-        <Tasks
-          key={item.id}
-          item={item}
-          handleCompleted={handleCompleted}
-          handleDelete={handleDelete}
-          setDataList={setDataList}
-          token={token}
-        />
-      ))}
+      {filterTask.length === 0 ? (
+        <p className="no-tasks">У вас еще нет задач</p>
+      ) : (
+        filterTask.map((item) => (
+          <Tasks
+            key={item.id}
+            item={item}
+            handleCompleted={handleCompleted}
+            handleDelete={handleDelete}
+            setDataList={setDataList}
+          />
+        ))
+      )}
     </ul>
-  ) : (
-    <div className="loading">Загрузка</div>
   );
 };
 

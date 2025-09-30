@@ -1,10 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
-import { useContext } from 'react';
-import { AuthContext } from '../../utils/AuthContext';
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const {
@@ -32,10 +29,8 @@ const Login = () => {
         }
       );
       const dataFromAPI = await response.json();
-      if (response.ok) {
-        login(dataFromAPI.token);
-        navigate('/toDoList');
-      }
+      localStorage.setItem('token', dataFromAPI.token);
+      navigate('/toDoList');
     } catch (error) {
       console.log(error.message);
     }

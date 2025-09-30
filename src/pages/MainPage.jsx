@@ -1,6 +1,5 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router';
-import { AuthContext } from '../utils/AuthContext';
 import Header from '../components/header';
 import List from '../components/list';
 import Input from '../components/input';
@@ -16,10 +15,8 @@ function MainPage() {
   const [dataList, setDataList] = useState([]);
   const [status, setStatus] = useState('all');
 
-  const { token } = useContext(AuthContext);
-
   const sendGetRequest = async () => {
-    if (!token) {
+    if (!localStorage.getItem('token')) {
       return;
     } else {
       try {
@@ -29,7 +26,7 @@ function MainPage() {
             method: 'GET',
             headers: {
               accept: 'application/json',
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${localStorage.getItem('token')}`
             }
           }
         );
@@ -43,7 +40,7 @@ function MainPage() {
 
   useEffect(() => {
     sendGetRequest();
-  }, [token]);
+  }, [localStorage.getItem('token')]);
 
   return (
     <Routes>
@@ -65,7 +62,6 @@ function MainPage() {
               <CounterAndTrashButton
                 dataList={dataList}
                 setDataList={setDataList}
-                token={token}
               />
               <Logout />
             </div>
