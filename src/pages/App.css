@@ -90,7 +90,7 @@ body {
 .task-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-size: 1rem;
   flex: 1;
   min-width: 0;
@@ -170,7 +170,6 @@ body {
   border-top: 2px solid black;
   background: #fff;
   gap: 20px;
-  border-bottom: 2px solid black;
 }
 
 .login-container {

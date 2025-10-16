@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://PetvKornev.github.io/ToDoAPI",
+  "homepage": "https://PetvKornev.github.io/ToDoRedux",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,8 +15,8 @@
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-hook-form": "^7.63.0",
-    "react-router": "^7.9.2"
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
