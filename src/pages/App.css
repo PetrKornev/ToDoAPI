@@ -64,12 +64,6 @@ body {
   background: #f5f5f5;
 }
 
-.error-text {
-  color: red;
-  font-size: 0.85rem;
-  margin: 0;
-}
-
 .todo-list {
   list-style: none;
   margin: 0;
@@ -87,25 +81,10 @@ body {
   gap: 10px;
 }
 
-.task-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 1rem;
+/* Make task text take the remaining space so buttons align to the right */
+.todo-item > span {
   flex: 1;
   min-width: 0;
-  word-break: break-word;
-}
-
-.task-label.completed span {
-  text-decoration: line-through;
-  color: #666;
-}
-
-.task-actions {
-  display: flex;
-  gap: 6px;
-  flex-shrink: 0;
 }
 
 .task-edit-input {
@@ -113,7 +92,8 @@ body {
   border-radius: 4px;
   padding: 4px;
   font-size: 1rem;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
 }
 
 .edit-btn,
@@ -157,11 +137,6 @@ body {
   background: #f5f5f5;
 }
 
-.filter-btn.active {
-  background: black;
-  color: white;
-}
-
 .counter-trash-container {
   display: flex;
   justify-content: space-between;
@@ -170,211 +145,6 @@ body {
   border-top: 2px solid black;
   background: #fff;
   gap: 20px;
-}
-
-.login-container {
-  border: 2px solid black;
-  border-radius: 10px;
-  max-width: 400px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
-.login-header {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  border-bottom: 2px solid black;
-  padding-bottom: 10px;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.login-input {
-  border: 2px solid black;
-  border-radius: 6px;
-  padding: 10px;
-  font-size: 1rem;
-  outline: none;
-}
-
-.login-input:focus {
-  border-color: #333;
-}
-
-.login-button {
-  border: none;
-  background: #28a745;
-  color: #fff;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.login-button:hover {
-  background: #218838;
-  transform: translateY(-2px);
-}
-
-.login-button:active {
-  background: #1e7e34;
-  transform: translateY(0);
-}
-
-.registration-container {
-  border: 2px solid black;
-  border-radius: 10px;
-  max-width: 500px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-}
-
-.registration-header {
-  text-align: center;
-  margin-bottom: 20px;
-  border-bottom: 2px solid black;
-  padding-bottom: 10px;
-}
-
-.registration-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.registration-input {
-  border: 2px solid black;
-  border-radius: 6px;
-  padding: 10px;
-  font-size: 1rem;
-  outline: none;
-  background: #fff;
-}
-
-.registration-input:focus {
-  border-color: #333;
-}
-
-.error-text {
-  color: red;
-  font-size: 0.85rem;
-  margin: 0;
-}
-
-.gender-group {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 5px 0;
-}
-
-.registration-button {
-  border: none;
-  background: #28a745;
-  color: #fff;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.registration-button:hover {
-  background: #218838;
-  transform: translateY(-2px);
-}
-
-.registration-button:active {
-  background: #1e7e34;
-  transform: translateY(0);
-}
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal-content {
-  background: #fff;
-  border: 2px solid black;
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-}
-
-.modal-content p {
-  margin-bottom: 16px;
-  font-size: 1rem;
-  color: #333;
-}
-
-.modal-button {
-  background: #28a745;
-  color: #fff;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: background 0.2s ease;
-}
-
-.modal-button:hover {
-  background: #218838;
-}
-
-.logout-button {
-  border: 2px solid black;
-  background: #fff;
-  color: black;
-  border-radius: 6px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-  margin: 5px;
-}
-
-.login-redirect-button {
-  border: 2px solid black;
-  background: #fff;
-  color: black;
-  padding: 10px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
-  font-size: 1rem;
-  font-weight: bold;
-  margin-top: 15px;
-  width: 100%;
-}
-
-.login-redirect-button:hover {
-  background: #f5f5f5;
-  transform: translateY(-1px);
-}
-
-.login-redirect-button:active {
-  background: #e0e0e0;
-  transform: translateY(0);
 }
 
 .no-tasks {
