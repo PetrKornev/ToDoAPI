@@ -1,22 +1,16 @@
 {
-  "name": "ToDoRTK",
+  "name": "todortk",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.0",
   "type": "module",
+  "homepage": "https://PetvKornev.github.io/ToDoAPI",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:withreg": "vite build --mode withreg",
-    "build:redux": "vite build --mode redux",
-    "build:rtk": "vite build --mode rtk",
-    "predeploy:withreg": "npm run build:withreg",
-    "predeploy:redux": "npm run build:redux",
-    "predeploy:rtk": "npm run build:rtk",
-    "deploy:withreg": "gh-pages -d dist -b ToDoAPIWithReg",
-    "deploy:redux": "gh-pages -d dist -b ToDoRedux",
-    "deploy:rtk": "gh-pages -d dist -b ToDoRTK"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.1",
