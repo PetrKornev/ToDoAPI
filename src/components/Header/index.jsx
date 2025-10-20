@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <div className="todo-header">
-      <h1>Мой ToDoListRedux</h1>
+      <h1>Мой ToDoListRTK</h1>
     </div>
   );
 };

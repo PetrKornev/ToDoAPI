@@ -1,11 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: '/ToDoAPI/',
-  build: {
-    outDir: 'dist'
-  }
+export default defineConfig(({ mode }) => {
+  let base = '/';
+
+  if (mode === 'withreg') base = '/ToDoAPIWithReg/';
+  if (mode === 'redux') base = '/ToDoRedux/';
+  if (mode === 'rtk') base = '/ToDoRTK/';
+
+  return {
+    plugins: [react()],
+    base
+  };
 });
