@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { deleteTask } from '../../redux/actions/listActions';
+import { deleteTask } from '../../redux/slices/listSlice';
 
 const DeleteButton = ({ id }) => {
   const dispatch = useDispatch();

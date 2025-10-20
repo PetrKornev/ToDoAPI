@@ -1,27 +1,19 @@
-import { legacy_createStore as createStore, combineReducers } from 'redux';
-import listReducer from './reducers/listReducer';
-import inputReducer from './reducers/inputReducer';
-import filterReducer from './reducers/filterReducer';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem('reduxState');
-    if (!serializedState) return undefined;
-    return JSON.parse(serializedState);
-  } catch (error) {
-    console.log(error);
-    return undefined;
-  }
-};
-
-const saveState = (state) => {
-  try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem('reduxState', serializedState);
-  } catch (error) {
-    console.log(error);
-  }
-};
+import filterReducer from './slices/filterSlice';
+import inputReducer from './slices/inputSlice';
+import listReducer from './slices/listSlice';
 
 const rootReducer = combineReducers({
   list: listReducer,
@@ -29,10 +21,22 @@ const rootReducer = combineReducers({
   filter: filterReducer
 });
 
-const persistedState = loadState();
+const persistConfig = {
+  key: 'root',
+  storage
+};
 
-const store = createStore(rootReducer, persistedState);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-store.subscribe(() => saveState(store.getState()));
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
+    })
+});
 
+export const persistor = persistStore(store);
 export default store;

@@ -1,23 +1,22 @@
 import { useDispatch } from 'react-redux';
-import {
-  statusAll,
-  statusActive,
-  statusCompleted
-} from '../../redux/actions/filterAction';
+import { setFilter } from '../../redux/slices/filterSlice';
 
 const FilterButtons = () => {
   const dispatch = useDispatch();
   return (
     <div className="filter-container">
-      <button className="filter-btn" onClick={() => dispatch(statusActive())}>
+      <button
+        className="filter-btn"
+        onClick={() => dispatch(setFilter('active'))}
+      >
         Активные
       </button>
-      <button className="filter-btn" onClick={() => dispatch(statusAll())}>
+      <button className="filter-btn" onClick={() => dispatch(setFilter('all'))}>
         Все
       </button>
       <button
         className="filter-btn"
-        onClick={() => dispatch(statusCompleted())}
+        onClick={() => dispatch(setFilter('completed'))}
       >
         Выполненные
       </button>

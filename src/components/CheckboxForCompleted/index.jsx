@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { taskIsCompleted } from '../../redux/actions/listActions';
+import { taskCompleted } from '../../redux/slices/listSlice';
 
 const CheckboxForCompleted = ({ id, completed }) => {
   const dispatch = useDispatch();
 
   const handleCompleted = () => {
-    dispatch(taskIsCompleted(id));
+    dispatch(taskCompleted(id));
   };
   return (
     <input type="checkbox" checked={completed} onChange={handleCompleted} />

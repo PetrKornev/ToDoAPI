@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { changeInput } from '../../redux/actions/inputAction';
-import { addNewTask } from '../../redux/actions/listActions';
+import { addNewTask } from '../../redux/slices/listSlice';
+import { changeInput } from '../../redux/slices/inputSlice';
 
 const Input = () => {
   const dispatch = useDispatch();
-  const inputValue = useSelector((state) => state.input.userInput);
+  const inputValue = useSelector((state) => state.input.input);
 
   const handleChange = (e) => {
     dispatch(changeInput(e.target.value));

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteAllTasks } from '../../redux/actions/listActions';
+import { deleteAllTasks } from '../../redux/slices/listSlice';
 
 const CounterAndTrashButton = () => {
   const dispatch = useDispatch();

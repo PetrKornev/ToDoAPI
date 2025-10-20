@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { editingTask, updateTaskText } from '../../redux/actions/listActions';
+import { editingTask, updateTaskText } from '../../redux/slices/listSlice';
 
 const EditableTaskText = ({ id, text, completed, isEditing }) => {
   const dispatch = useDispatch();
 
   const handleEdit = (e) => {
-    dispatch(updateTaskText(id, e.target.value));
+    dispatch(updateTaskText({ id: id, newText: e.target.value }));
   };
 
   const handleKeyDown = (e) => {
